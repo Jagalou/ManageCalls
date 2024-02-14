@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -27,13 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void reqModPer() {
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.MODIFY_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
-
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MODIFY_PHONE_STATE}, Permission_Req_Code);
-            Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-            reqModPer();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.MODIFY_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MODIFY_PHONE_STATE, Manifest.permission.READ_PHONE_STATE}, Permission_Req_Code);
         } else {
-
             Toast.makeText(this, "Entering Active mode", Toast.LENGTH_SHORT).show();
             CallReceiver callReceiver = new CallReceiver();
             Intent intent = new Intent(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
@@ -42,11 +40,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult (int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == Permission_Req_Code){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == Permission_Req_Code) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
