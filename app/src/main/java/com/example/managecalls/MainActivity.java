@@ -3,10 +3,7 @@ package com.example.managecalls;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.content.Intent;
-import android.telephony.TelephonyManager;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -34,12 +31,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Permission ", Toast.LENGTH_SHORT).show();
 
         }
-//        else {
-//            Toast.makeText(this, "Entering Active mode", Toast.LENGTH_SHORT).show();
-//            CallReceiver callReceiver = new CallReceiver();
-//            Intent intent = new Intent(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
-//            callReceiver.onReceive(this, intent);
-//        }
+
     }
 
     @Override
@@ -54,24 +46,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        Button actbtn = findViewById(R.id.activate);
-//        actbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                activateConnectionService();
-//            }
-//        });
-//    }
-//
-//    private void activateConnectionService() {
-//        Intent intent = new Intent(this, MyConnectionService.class);
-//        startService(intent);
-//    }
 
 }
