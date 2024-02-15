@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Manage Calls</string>
+    <string name="admin_description">This app requires device administration privileges to function properly.</string>
+
 </resources>
