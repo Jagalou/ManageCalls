@@ -30,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.MODIFY_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MODIFY_PHONE_STATE, Manifest.permission.READ_PHONE_STATE}, Permission_Req_Code);
-        } else {
-            Toast.makeText(this, "Entering Active mode", Toast.LENGTH_SHORT).show();
-            CallReceiver callReceiver = new CallReceiver();
-            Intent intent = new Intent(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
-            callReceiver.onReceive(this, intent);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MODIFY_PHONE_STATE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.ANSWER_PHONE_CALLS}, Permission_Req_Code);
+            Toast.makeText(this, "Permission ", Toast.LENGTH_SHORT).show();
+
         }
+//        else {
+//            Toast.makeText(this, "Entering Active mode", Toast.LENGTH_SHORT).show();
+//            CallReceiver callReceiver = new CallReceiver();
+//            Intent intent = new Intent(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
+//            callReceiver.onReceive(this, intent);
+//        }
     }
 
     @Override
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
     }

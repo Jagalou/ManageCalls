@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
@@ -16,6 +17,7 @@ public class CallReceiver extends BroadcastReceiver {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context context, Intent intent) {
+
 
         String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 
